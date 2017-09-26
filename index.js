@@ -25,7 +25,7 @@ const version = 1.1;
 
 
 app.post('/:projectname', jsonParser, function (req, res) {
-  generator.initialize(req.params.projectname, req.body);
+  generator.run(req.params.projectname, req.body);
   res.setHeader('Content-Type', 'application/json')
   res.send(JSON.stringify({application: "Rokfor Generator", version: version, status: "ok"})); 
 });
