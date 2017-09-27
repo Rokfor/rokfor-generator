@@ -3,7 +3,7 @@ module.exports = {
   pages : [
 	{
 		template    : 'page/0_pre.tex',
-		controller  : function(module){return({Title: "Dies ist der Titel", Autor: "Beat Mazenauer"});}
+		controller  : function(module){return({Title: "Dies ist der Titel", Autor: "Autor"});}
 	},
 	{
 		template    : 'page/1_page.tex',
@@ -21,7 +21,7 @@ module.exports = {
   cover : [
 	{
 		template    : 'page/cover.tex',
-		controller  : function(module){return({Title: "Dies ist der Titel", Autor: "Beat Mazenauer"});}
+		controller  : function(module){return({Title: "Dies ist der Titel", Autor: "Autor"});}
 	}
   ]  
 }

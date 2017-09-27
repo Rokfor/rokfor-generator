@@ -1,4 +1,3 @@
-
 module.exports = {
   api : {
     "endpoint" : '',      // Rokfor API Endpoint (Ending on /api/)
@@ -7,5 +6,10 @@ module.exports = {
     "rokey"    : '',      // Rokfor R/O Key
   },
   pollport    : 8888,     // Listener Port for Route Hook Callbacks
-  loglevel    : 'debug'
+  loglevel    : 'debug',
+  s3_aws_key    : "",
+  s3_aws_secret : "",
+  s3_aws_region : "",
+  s3_aws_bucket : "",
+  download    : 'http://provider/bucket'
 }
