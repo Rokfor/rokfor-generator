@@ -25,26 +25,26 @@ The utility class contains some helper functions:
 
 # Example Template Config File
 
-  module.exports = {
-    pages : [
-  	{
-  		template    : 'page/0_pre.tex',
-  		controller  : async function(u) {
-  			var d = await u.getRf(`${u.gdata.selection.Mode}/${u.gdata.selection.Value}`, {status:'both'});
-  			return({Title: d.Contribution.Name, Autor: "Beat Mazenauer"});
-  		}
-  	},
-  	…
-  	{
-  		template    : 'page/2_post.tex',
-  		controller  : function(module) {return({Footer: "Fusszeile"});}
-  	}
-    ],
-    cover : [
-  	{
-  		template    : 'page/cover.tex',
-  		controller  : function(module) {return({Title: "Dies ist der Titel", Autor: "Beat Mazenauer"});}
-  	}
-    ]  
-  }
+    module.exports = {
+      pages : [
+    	{
+    		template    : 'page/0_pre.tex',
+    		controller  : async function(u) {
+    			var d = await u.getRf(`${u.gdata.selection.Mode}/${u.gdata.selection.Value}`, {status:'both'});
+    			return({Title: d.Contribution.Name, Autor: "Beat Mazenauer"});
+    		}
+    	},
+    	…
+    	{
+    		template    : 'page/2_post.tex',
+    		controller  : function(module) {return({Footer: "Fusszeile"});}
+    	}
+      ],
+      cover : [
+    	{
+    		template    : 'page/cover.tex',
+    		controller  : function(module) {return({Title: "Dies ist der Titel", Autor: "Beat Mazenauer"});}
+    	}
+      ]  
+    }
 
