@@ -1,6 +1,6 @@
 node_modules
 config/config.js
 my.log
+.DS_Store
 templates/*
-templates/.DS_Store
 !templates/example
