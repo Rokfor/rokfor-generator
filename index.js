@@ -21,7 +21,7 @@ var config     = require('./config/config.js'),
     jsonParser = bodyParser.json(),
     port       = process.env.PORT || config.pollport;
 
-const version = 1.1;
+const version = 0.9;
 
 
 app.post('/:projectname', jsonParser, function (req, res) {
