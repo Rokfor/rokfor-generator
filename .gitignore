@@ -1,5 +1,6 @@
 node_modules
 config/config.js
-npm-debug.log
 my.log
-couchdb
+.DS_Store
+templates/*
+!templates/example

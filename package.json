@@ -4,14 +4,23 @@
   "description": "Node Server syncing CouchDB to Rokfor",
   "main": "index.js",
   "dependencies": {
+    "@monolambda/s3": "^1.0.2",
     "body-parser": "^1.16.0",
-    "cradle": "^0.7.1",
-    "cradle_security": "github:urshofer/cradle_security",
+    "child_process": "^1.0.2",
     "express": "^4.14.1",
     "fs": "0.0.1-security",
     "log": "^1.4.0",
+    "marked": "^0.3.6",
+    "marked-tex-renderer": "https://github.com/urshofer/marked-tex-renderer/tarball/master",
+    "node-latex": "https://github.com/urshofer/node-latex/tarball/master",
+    "nunjucks": "^3.0.1",
+    "path": "^0.12.7",
+    "pdfinfojs": "^0.3.6",
     "q": "^1.4.1",
-    "unirest": "^0.5.1"
+    "sys": "0.0.1",
+    "temp": "^0.8.3",
+    "unirest": "^0.5.1",
+    "util": "^0.10.3"
   },
   "devDependencies": {},
   "scripts": {
