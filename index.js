@@ -17,14 +17,42 @@ var config     = require('./config/config.js'),
     Log        = require('log'),
     log        = new Log(config.loglevel, fs.createWriteStream('my.log')),
     generator  = require('./lib/generator.js')(config, log),
+    git        = require('./lib/git.js')(config, log),
+    ghwebhook  = require('express-github-webhook'),
     app        = express(),
     jsonParser = bodyParser.json(),
     port       = process.env.PORT || config.pollport;
 
 const version = 0.9;
 
+// Github hooking
 
-app.post('/:projectname', jsonParser, function (req, res) {
+var github = ghwebhook({ path: '/github/webhook', secret: config.github_secret });
+app.use(bodyParser.json());
+app.use(github);
+github.on('push', function (repo, data) {
+  git.clone(data.repository.name, repo);
+  res.setHeader('Content-Type', 'application/json')
+  res.send(JSON.stringify({application: "Rokfor Generator", version: version, status: "ok"})); 
+});
+
+// Gitlab hooking
+
+app.post('/gitlab/webhook', jsonParser, function (req, res) {
+  res.setHeader('Content-Type', 'application/json')
+  if (
+    req.headers['x-gitlab-token'] === config.gitlab_secret
+    && req.body.object_kind === "push"
+    ) {
+    git.clone(req.body.repository.name, req.body.repository.git_ssh_url);
+    res.send(JSON.stringify({application: "Rokfor Generator", version: version, status: "ok"})); 
+  } 
+  else {
+    res.send(JSON.stringify({application: "Rokfor Generator", version: version, status: "error"})); 
+  }
+});
+
+app.post('/generate/:projectname', jsonParser, function (req, res) {
   generator.run(req.params.projectname, req.body);
   res.setHeader('Content-Type', 'application/json')
   res.send(JSON.stringify({application: "Rokfor Generator", version: version, status: "ok"})); 
