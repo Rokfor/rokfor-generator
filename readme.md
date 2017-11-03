@@ -16,12 +16,13 @@ Configuration is required, copy `config.local.js` to `config.js` and edit the se
 
 Invoke the generation process by issuing a Export Action in the Rokfor backend:
 
-![alt text](https://raw.githubusercontent.com/username/projectname/branch/path/to/img.png)
+![Exporter Hook](https://raw.githubusercontent.com/Rokfor/rokfor-generator/master/doc/exporter-hook.png)
 
-
-`POST` on `http://localhost:8888/generator/:pluginname`
-
+This action would call the generator with a `POST` call on `http://generator.example.com:8888/generator/test`.
 It triggers then the `test` plugin which needs to be defined in the `templates` folder.
+
+The generator will call back the Rokfor CMS after the generation process. The results are stored in the exporters
+Section.
 
 ## Templates
 
