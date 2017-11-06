@@ -31,7 +31,7 @@ var github = ghwebhook({ path: '/github/webhook', secret: config.github_secret }
 app.use(bodyParser.json());
 app.use(github);
 github.on('push', function (repo, data) {
-  git.clone(data.repository.name, repo);
+  git.clone(repo, data.repository.clone_url);
 });
 
 // Gitlab hooking
