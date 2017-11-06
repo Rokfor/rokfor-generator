@@ -40,7 +40,7 @@ github.on('push', function (repo, data) {
 app.post('/gitlab/webhook', jsonParser, function (req, res) {
   res.setHeader('Content-Type', 'application/json')
   if (
-    req.headers['x-gitlab-token'] === config.gitlab_secret
+    req.headers['x-gitlab-token'] === config.gitlab.secret
     && req.body.object_kind === "push"
     ) {
     git.clone(req.body.repository.name, req.body.repository.git_http_url, "gitlab");
