@@ -32,8 +32,6 @@ app.use(bodyParser.json());
 app.use(github);
 github.on('push', function (repo, data) {
   git.clone(data.repository.name, repo);
-  res.setHeader('Content-Type', 'application/json')
-  res.send(JSON.stringify({application: "Rokfor Generator", version: version, status: "ok"})); 
 });
 
 // Gitlab hooking
