@@ -9,6 +9,8 @@
 
 "use strict";
 
+const version = 0.9;
+
 var config     = require('./config/config.js'),
     q          = require("q"),
     express    = require('express'),
@@ -16,14 +18,13 @@ var config     = require('./config/config.js'),
     fs         = require('fs'),
     Log        = require('log'),
     log        = new Log(config.loglevel, fs.createWriteStream('my.log')),
-    generator  = require('./lib/generator.js')(config, log),
-    git        = require('./lib/git.js')(config, log),
+    slack      = require('./lib/slack.js')(config, log),
+    generator  = require('./lib/generator.js')(config, log, slack),
+    git        = require('./lib/git.js')(config, log, slack),
     ghwebhook  = require('express-github-webhook'),
     app        = express(),
     jsonParser = bodyParser.json(),
     port       = process.env.PORT || config.pollport;
-
-const version = 0.9;
 
 // Github hooking
 
