@@ -28,11 +28,11 @@ var config     = require('./config/config.js'),
 
 // Github hooking
 
-var github = ghwebhook({ path: '/github/webhook', secret: config.github_secret });
+var github = ghwebhook({ path: '/github/webhook', secret: config.github.secret });
 app.use(bodyParser.json());
 app.use(github);
 github.on('push', function (repo, data) {
-  git.clone(repo, data.repository.clone_url);
+  git.clone(repo, data.repository.clone_url, "github");
 });
 
 // Gitlab hooking
@@ -43,7 +43,7 @@ app.post('/gitlab/webhook', jsonParser, function (req, res) {
     req.headers['x-gitlab-token'] === config.gitlab_secret
     && req.body.object_kind === "push"
     ) {
-    git.clone(req.body.repository.name, req.body.repository.git_ssh_url);
+    git.clone(req.body.repository.name, req.body.repository.git_http_url, "gitlab");
     res.send(JSON.stringify({application: "Rokfor Generator", version: version, status: "ok"})); 
   } 
   else {
