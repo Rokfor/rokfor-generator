@@ -4,3 +4,4 @@ my.log
 .DS_Store
 templates/*
 !templates/example
+package-lock.json
