@@ -9,8 +9,6 @@
 
 "use strict";
 
-const version = 0.9;
-
 var config     = require('./config/config.js'),
     q          = require("q"),
     express    = require('express'),
@@ -24,7 +22,10 @@ var config     = require('./config/config.js'),
     ghwebhook  = require('express-github-webhook'),
     app        = express(),
     jsonParser = bodyParser.json(),
-    port       = process.env.PORT || config.pollport;
+    port       = process.env.PORT || config.pollport,
+    pkg        = JSON.parse(fs.readFileSync('./package.json', 'utf8'));
+
+const version = pkg.version;
 
 // Github hooking
 
