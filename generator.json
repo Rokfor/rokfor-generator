@@ -1,0 +1,12 @@
+{
+  "apps" : [{
+    "name"          : "generator",
+    "script"        : "./index.js",
+    "watch"         : ["lib", "./index.js", "config"],
+    "watch_options" : {
+                        persistent    : true,
+                        usePolling    : true,
+                        ignoreInitial : true
+                      }
+  }]
+}
