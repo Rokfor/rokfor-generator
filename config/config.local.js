@@ -1,10 +1,12 @@
 module.exports = {
-  api : {
-    "endpoint"  : '',      // Rokfor API Endpoint (Ending on /api/)
-    "user"      : '',      // Rokfor API User (needs root level)
-    "rwkey"     : '',      // Rokfor R/W Key for JWT Creation
-    "rokey"     : '',      // Rokfor R/O Key
-  },
+  api : [
+    {
+      "endpoint" : '',
+      "user"      : '',      // Rokfor API User (needs root level)
+      "rwkey"     : '',      // Rokfor R/W Key for JWT Creation
+      "rokey"     : ''
+    }
+  ],
   github        : {
     secret      : 'token-defined-in-webhook'
   },
