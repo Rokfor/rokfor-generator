@@ -4,7 +4,8 @@ Hi! This is the PDF-generator module for the Rokfor CMS. It's written in node.js
 
 ## Dependencies
 
-- a complete LaTeX distro (eg. `apt-get install texlive-full`)
+- a complete LaTeX/TeTeX distro (eg. `apt-get install texlive-full`)
+- `pdfinfo` from poppler-utilities (eg. `apt-get install poppler-utils`)
 - `node.js` and `npm`
 - An S3 account to upload generated docs
 - A running installation of the [Rokfor CMS](http://cloud.rokfor.ch)
@@ -18,48 +19,30 @@ Invoke the generation process by issuing a Export Action in the Rokfor backend:
 
 ![Exporter Hook](https://raw.githubusercontent.com/Rokfor/rokfor-generator/master/doc/exporter-hook.png)
 
-This action would call the generator with a `POST` call on `http://generator.example.com:8888/generator/test`.
-It triggers then the `test` plugin which needs to be defined in the `templates` folder.
+The action in the image above would call the generator with `[POST] http://generator.example.com:8888/generator/test`. This would trigger the plugin named `test`. `test` needs to be defined in the `templates` folder.
+After generation the generator will call back the Rokfor CMS posting the process status. The results are stored in the exporters Section.
 
-The generator will call back the Rokfor CMS after the generation process. The results are stored in the exporters
-Section.
+## Github/Gitlab integration
+
+Creating plugins can be a tedious try-and-error process. To ease the deployment a little, it is possible to hook repositories to the generator. Push Events to Github/Gitlab can trigger a clone/pull event via a configured webhook. So you can develop your template in your own github or gitlab repo.
+
+    github        : {
+      user        : '',                         // Omit for public repo
+      password    : '',                         // Omit for public repo
+      secret      : 'token-defined-in-webhook'
+    },
+    gitlab        : {
+      user        : '',
+      password    : '',
+      secret      : 'token-defined-in-webhook'
+    }
+
+__Most important is to define a secret!__ Otherwise your generator instance can not determine if the webhook action is issued from a reliable git account. The same secret needs to be set in the github/gitlab webhook setting.
+
+![Github Hook](https://raw.githubusercontent.com/Rokfor/rokfor-generator/master/doc/github-webhook.png) ![Gitlab Hook](https://raw.githubusercontent.com/Rokfor/rokfor-generator/master/doc/gitlab-webhook.png)
+
+If you set up your hooks successfully, everytime you push changes to your template, the generator will sync the repo. Use the same secret for multiple repos so that the generator is able to sync more than one repo.
 
 ## Templates
 
-Templates need a central `config.js` file which define the production of a PDF. The generator runs thru the object generating (several) pdfs named by the key. Each document is further split in a array of objects, each defining a template and a controller.
-
-- **Templates** are LaTex fragments, using the [Nunjucks](https://mozilla.github.io/nunjucks) template language
-- **Controllers** are async functions getting a utils class instance as their parameter, returning a object which will be sent to the nunjuck renderer. It probably contains all the data to populate a template.
-
-The utility class contains some helper functions:
-
-- `getRf` issues a GET call to the Rokfor CMS defined in the configuration file of the generator.
-- `md2Tex` returns a LaTeX string from a markdown string. Markdown is widely used in the Rokfor CMS to store text content.
-- `img2Tex` prepares an image array (i.E `d.Data.Image.Content` assuming `d` is returned from Rokfor) for further use in a template.
-
-## Example Template Config File
-
-This configuration file would produce 2 pdfs, on called pages, the other cover. The first compiles two .tex templates, the latter one.
-
-    module.exports = {
-      pages : [
-        {
-          template    : 'page/0_pre.tex',
-          controller  : async function(u) {
-            var d = await u.getRf(`${u.gdata.selection.Mode}/${u.gdata.selection.Value}`, {status:'both'});
-            return({Title: d.Contribution.Name, Autor: "Urs Hofer"});
-          }
-        },
-        {
-          template    : 'page/2_post.tex',
-          controller  : function(module) {return({Footer: "Fusszeile"});}
-        }
-      ],
-      cover : [
-        {
-          template    : 'page/cover.tex',
-          controller  : function(module) {return({Title: "Dies ist der Titel", Autor: "Urs Hofer"});}
-        }
-      ]  
-    }
-
+See the [readme](./templates/readme.md) in the templates folder.
