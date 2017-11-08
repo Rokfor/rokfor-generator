@@ -52,8 +52,21 @@ app.post('/gitlab/webhook', jsonParser, function (req, res) {
   }
 });
 
+
 app.post('/generate/:projectname', jsonParser, function (req, res) {
-  log.info(req.body)
+  /*
+  
+  Body contains:
+  
+  { 
+    ProcessId    : 18,
+    CallbackUrl  : 'http://writer.rokfor.ch/api/exporter',
+    Token        : 'JWT-Token',
+    Configuration: { Book: [ [Object] ], Issue: [], Chapter: [], Template: [] },
+    Selection    : { Mode: 'issues|contribution', Value: '2' } 
+  }
+  */
+
   generator.run(req.params.projectname, req.body);
   res.setHeader('Content-Type', 'application/json')
   res.send(JSON.stringify({application: "Rokfor Generator", version: version, status: "ok"})); 
