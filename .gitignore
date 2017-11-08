@@ -3,5 +3,5 @@ config/config.js
 my.log
 .DS_Store
 templates/*
-!templates/example
+!templates/readme.md
 package-lock.json
