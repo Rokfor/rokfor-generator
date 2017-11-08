@@ -60,7 +60,7 @@ app.post('/generate/:projectname', jsonParser, function (req, res) {
   
   { 
     ProcessId    : 18,
-    CallbackUrl  : 'http://writer.rokfor.ch/api/exporter',
+    CallbackUrl  : 'http://rokfor.instance.com/api/exporter',
     Token        : 'JWT-Token',
     Configuration: { Book: [ [Object] ], Issue: [], Chapter: [], Template: [] },
     Selection    : { Mode: 'issues|contribution', Value: '2' } 
