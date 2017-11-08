@@ -39,7 +39,9 @@ Creating plugins can be a tedious try-and-error process. To ease the deployment 
 
 __Most important is to define a secret!__ Otherwise your generator instance can not determine if the webhook action is issued from a reliable git account. The same secret needs to be set in the github/gitlab webhook setting.
 
-![Github Hook](https://raw.githubusercontent.com/Rokfor/rokfor-generator/master/doc/github-webhook.png) ![Gitlab Hook](https://raw.githubusercontent.com/Rokfor/rokfor-generator/master/doc/gitlab-webhook.png)
+Github Hook                |  Gitlab Hook
+:-------------------------:|:-------------------------:
+![Github Hook](https://raw.githubusercontent.com/Rokfor/rokfor-generator/master/doc/github-webhook.png)  |  ![Gitlab Hook](https://raw.githubusercontent.com/Rokfor/rokfor-generator/master/doc/gitlab-webhook.png)
 
 If you set up your hooks successfully, everytime you push changes to your template, the generator will sync the repo. Use the same secret for multiple repos so that the generator is able to sync more than one repo.
 
