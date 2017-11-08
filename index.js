@@ -53,6 +53,7 @@ app.post('/gitlab/webhook', jsonParser, function (req, res) {
 });
 
 app.post('/generate/:projectname', jsonParser, function (req, res) {
+  log.info(req.body)
   generator.run(req.params.projectname, req.body);
   res.setHeader('Content-Type', 'application/json')
   res.send(JSON.stringify({application: "Rokfor Generator", version: version, status: "ok"})); 
