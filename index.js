@@ -65,7 +65,8 @@ app.post('/generate/:projectname', jsonParser, function (req, res) {
     Selection    : { Mode: 'issues|contribution', Value: '2' } 
   }
   */
-
+ 
+ log.info(req.body);
   let generator  = require('./lib/generator.js')(config, log, slack);
   generator.run(req.params.projectname, req.body);
   res.setHeader('Content-Type', 'application/json')
