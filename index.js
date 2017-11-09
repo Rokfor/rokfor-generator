@@ -17,7 +17,6 @@ var config     = require('./config/config.js'),
     Log        = require('log'),
     log        = new Log(config.loglevel, fs.createWriteStream('my.log')),
     slack      = require('./lib/slack.js')(config, log),
-    generator  = require('./lib/generator.js')(config, log, slack),
     git        = require('./lib/git.js')(config, log, slack),
     ghwebhook  = require('express-github-webhook'),
     app        = express(),
@@ -67,6 +66,7 @@ app.post('/generate/:projectname', jsonParser, function (req, res) {
   }
   */
 
+  let generator  = require('./lib/generator.js')(config, log, slack);
   generator.run(req.params.projectname, req.body);
   res.setHeader('Content-Type', 'application/json')
   res.send(JSON.stringify({application: "Rokfor Generator", version: version, status: "ok"})); 
