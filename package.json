@@ -14,7 +14,7 @@
     "log": "^1.4.0",
     "marked": "^0.3.6",
     "marked-tex-renderer": "https://github.com/urshofer/marked-tex-renderer/tarball/master",
-    "node-latex": "https://github.com/urshofer/node-latex/tarball/master",
+    "node-latex": "git+https://git@github.com/urshofer/node-latex.git#master",
     "nunjucks": "^3.0.1",
     "path": "^0.12.7",
     "pdfinfojs": "^0.3.6",
