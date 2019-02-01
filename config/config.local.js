@@ -11,6 +11,7 @@ module.exports = {
     secret      : 'token-defined-in-webhook'
   },
   gitlab        : {
+    ssh         : true,
     user        : '',
     password    : '',
     secret      : 'token-defined-in-webhook'
