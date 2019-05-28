@@ -19,7 +19,7 @@
     "node-latex": "git+https://git@github.com/urshofer/node-latex.git#master",
     "nunjucks": "^3.1.2",
     "path": "^0.12.7",
-    "pdfinfojs": "^0.3.6",
+    "pdfinfojs": ">=0.4.1",
     "q": "^1.5.1",
     "save": "^2.3.2",
     "simple-git": "^1.91.0",
