@@ -14,7 +14,7 @@
     "fs": "0.0.1-security",
     "fs-extra": "^5.0.0",
     "log": "^1.4.0",
-    "marked": "^0.6.3",
+    "marked": "^2.0.0",
     "marked-tex-renderer": "git+https://git@github.com/urshofer/marked-tex-renderer.git#master",
     "node-latex": "git+https://git@github.com/urshofer/node-latex.git#master",
     "nunjucks": "^3.2.3",
