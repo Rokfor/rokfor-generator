@@ -16,6 +16,10 @@ module.exports = {
     password    : '',
     secret      : 'token-defined-in-webhook'
   },
+  latex         : {
+    cmd         : 'lualatex',
+    bibtexCMD   : 'biber',
+  },
   pollport      : 8888,     // Listener Port for Route Hook Callbacks
   loglevel      : 'debug',
   s3_aws_key    : '',
