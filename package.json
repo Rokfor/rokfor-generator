@@ -23,7 +23,7 @@
     "puppeteer": "^1.17.0",
     "q": "^1.5.1",
     "save": "^2.3.2",
-    "simple-git": "^1.91.0",
+    "simple-git": "^3.5.0",
     "string-to-stream": "^1.1.0",
     "sys": "0.0.1",
     "temp": "^0.8.3",
