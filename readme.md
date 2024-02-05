@@ -48,3 +48,14 @@ If you set up your hooks successfully, everytime you push changes to your templa
 ## Templates
 
 See the [readme](./templates/readme.md) in the templates folder.
+
+## CLI
+
+Run `npm run-script cli` to generate a pdf locally.
+Define `.env` as follows:
+
+```
+PLUGIN=plugin-name
+ISSUE_ID=issue-id
+URL=url of backend service
+```
