@@ -6,4 +6,5 @@ templates/*
 !templates/readme.md
 package-lock.json
 output.pdf
+out.*
 .env

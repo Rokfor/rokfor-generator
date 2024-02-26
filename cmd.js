@@ -13,6 +13,7 @@
 require('dotenv').config();
 const plugin = process.env.PLUGIN;
 const url = process.env.URL;
+const passes = process.env.PASSES || 1;
 const issueId = parseInt(process.env.ISSUE_ID, 10); // Convert ISSUE_ID to an integer
 
 
@@ -29,10 +30,9 @@ const version = pkg.version;
 const createIssue = function(projectname, issue, instance) {
   const configuration = 
     { 
-        ProcessId    : 18,
         CallbackUrl  : `http://${instance}/api/exporter`,
-        Configuration: { Book: [ [Object] ], Issue: [], Chapter: [], Template: [] },
-        Selection    : { Mode: 'issues', Value: issue } 
+        Passes       : passes,
+        Issue        : issue
     }
   let generator  = require('./lib/generator.js')(config, log, slack);
   generator.runLocal(projectname, configuration);
