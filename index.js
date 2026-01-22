@@ -22,7 +22,8 @@ var config     = require('./config/config.js'),
     app        = express(),
     jsonParser = bodyParser.json(),
     port       = process.env.PORT || config.pollport,
-    pkg        = JSON.parse(fs.readFileSync('./package.json', 'utf8'));
+    pkg        = JSON.parse(fs.readFileSync('./package.json', 'utf8')),
+    jwt        = require('jsonwebtoken');
 
 const version = pkg.version;
 
@@ -72,6 +73,64 @@ app.post('/generate/:projectname', jsonParser, function (req, res) {
   res.send(JSON.stringify({application: "Rokfor Generator", version: version, status: "ok"})); 
 });
 
+// new generator route.
+// all data is passed in the jwt header token
+
+/* TOKEN
+
+{
+  "exp": 1768998254,
+  "data": {
+    "callback": "http://localhost:3001/api/exporter/callback/152",
+    "id": 152,
+    "payload": {},
+    "exporter": {
+      "id": 1,
+      "name": "Book",
+      "api": "http://localhost:5002/generate_v2/rokfor-typst-sfgbb",
+      "books": [],
+      "chapters": [],
+      "issues": [
+        {
+          "id": 1,
+          "name": "Menu",
+          "status": "Open",
+          "settings": {},
+          "locales": {},
+          "opendate": null,
+          "closedate": null,
+          "infotext": null,
+          "book": {
+            "id": 2,
+            "settings": {},
+            "locales": {},
+            "rights": []
+          },
+          "rights": []
+        }
+      ],
+      "templates": []
+    }
+  },
+  "iat": 1768997654
+}
+
+*/
+
+app.post('/generate_v2/:projectname', jsonParser, async function (req, res) {
+  const authHeader = req.headers.authorization
+  if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    return res.status(401).json({ error: 'Missing or invalid Authorization header' })
+  }
+  const token = authHeader.split(' ')[1]
+  // Payload: See token data
+  const payload = (jwt.decode(token)).data
+  let generator  = require('./lib/generator_v2.js')(config, log, slack);
+  generator.run(req.params.projectname, payload, token);
+  res.setHeader('Content-Type', 'application/json')
+  res.send(JSON.stringify({application: "Rokfor Generator", version: version, status: "ok"})); 
+});
+
 app.get('/',function(req,res)
 {
   res.setHeader('Content-Type', 'application/json')
@@ -80,7 +139,6 @@ app.get('/',function(req,res)
 
  
 app.listen(port, function () {
-  log.info("* starting Rokfor -> Writer Sync...")
+  log.info("* starting Rokfor GENERATOR SERVER...")
   log.info(`  - Listening on Port ${port}`)
 });
-

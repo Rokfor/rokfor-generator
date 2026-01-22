@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "@monolambda/s3": "^1.0.2",
+    "@myriaddreamin/typst-ts-node-compiler": "^0.7.0-rc1",
     "@slack/client": "^3.16.0",
     "body-parser": "^1.19.0",
     "capture-website": "^0.3.2",
@@ -14,6 +15,7 @@
     "express-github-webhook": "^1.0.6",
     "fs": "0.0.1-security",
     "fs-extra": "^5.0.0",
+    "jsonwebtoken": "^9.0.3",
     "log": "^1.4.0",
     "marked": "^2.0.0",
     "marked-tex-renderer": "git+https://git@github.com/urshofer/marked-tex-renderer.git#master",
@@ -34,6 +36,7 @@
   },
   "scripts": {
     "start": "node index.js",
+    "watch": "nodemon index.js",
     "cli": "node cmd.js"
   },
   "keywords": [
@@ -41,5 +44,8 @@
     "CouchDB"
   ],
   "author": "Urs Hofer",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
 }
