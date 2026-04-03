@@ -5,7 +5,7 @@ my.log
 templates/*
 !templates/readme.md
 package-lock.json
-output.pdf
+output*
 out.*
 .env
 .downloads
