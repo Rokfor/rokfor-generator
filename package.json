@@ -37,7 +37,8 @@
   "scripts": {
     "start": "node index.js",
     "watch": "nodemon index.js",
-    "cli": "node cmd.js"
+    "cli": "node cmd.js",
+    "cli:watch": "nodemon --watch templates --ext '*' --exec 'npm run cli'"
   },
   "keywords": [
     "Rokfor",
