@@ -22,6 +22,7 @@
     "node-latex": "git+https://git@github.com/urshofer/node-latex.git#master",
     "nunjucks": "^3.2.3",
     "path": "^0.12.7",
+    "pdf-lib": "^1.17.1",
     "pdfinfojs": ">=0.4.1",
     "puppeteer": "^1.20.0",
     "q": "^1.5.1",
