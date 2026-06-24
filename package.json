@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "@monolambda/s3": "^1.0.2",
-    "@myriaddreamin/typst-ts-node-compiler": "^0.7.0-rc1",
+    "@myriaddreamin/typst-ts-node-compiler": "^0.8.0-rc2",
     "@slack/client": "^3.16.0",
     "body-parser": "^1.19.0",
     "capture-website": "^0.3.2",
